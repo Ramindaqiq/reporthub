@@ -4,7 +4,7 @@ var router = require('express').Router();
 
 
 router.get('/', function(req, res) {
-  res.send({message: "fuck you , its working!"})
+  res.send({message: "its working!"})
 });
 
 router.get('/about', function(req, res) {

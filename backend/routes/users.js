@@ -40,7 +40,6 @@ router.post('/delete',function(req,res,next){
 router.post('/login', function(req,res) {
   User.findOne({ username: req.body.username}, function(err, user) {
     if (err) return done(err);
-    console.log(user)
     if (!user) {
       return res.status(404).send('No user found with that username!');
     }
@@ -62,7 +61,6 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/verifyLogin', verifyToken, function(req, res, next) {
-  console.log(req.email)
   User.findOne({email : req.email}, function (err, user) {
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!user) return res.status(404).send("No user found.");
@@ -72,20 +70,16 @@ router.get('/verifyLogin', verifyToken, function(req, res, next) {
 });
 router.post('/register', function(req, res, next) {
   User.findOne({$or:[{email: req.body.email},{mobileNumber: req.body.mobileNumber}]}, function(err, existingEmail) {
-    console.log(existingEmail);
     if (existingEmail) {
       return res.status(404).send('Account with that email address or mobile number already exists.');
     } else {
-      console.log(req.body.username)
       User.findOne({username: req.body.username}, function(err, existingUser) {
         if(existingUser) {
           return res.status(404).send('Account with that username already exists.');
         } else {
-          console.log(req.body)
           var salt = bcrypt.genSaltSync(10);;
           bcrypt.hash(req.body.password, salt, null, function(err, hash) {
             if (err) return next(err);
-            console.log(err)
 
             var user = new User();
             user.fullName = req.body.fullName;
@@ -93,8 +87,11 @@ router.post('/register', function(req, res, next) {
             user.mobileNumber = req.body.mobileNumber;
             user.username = req.body.username;
             user.password = hash;
-            user.role = req.body.role;
-            console.log(hash)
+            if(req.body.role) {
+              user.role = req.body.role;
+            } else {
+              user.role = "viewer";
+            }
             user.save(function(err, user) {
               if (err) return next(err);
               var jwtTokenUser = {
@@ -103,7 +100,6 @@ router.post('/register', function(req, res, next) {
               var token = jwt.sign(jwtTokenUser,secret.secretKey, {
                 expiresIn: 86400
               });
-              console.log(token)
               return res.status(200).send({'message':'Registration Successfully done.', token:token,fullName:user.fullName,role:user.role});
             });
           });
@@ -133,7 +129,6 @@ router.post('/update', function(req, res, next) {
         } else {
           User.update({'_id':params._id},params, function(err, user) {
             if (err) return next(err);
-            console.log(user)
             return res.status(200).send('Username updated Successfully.');
           });
         }
@@ -247,24 +242,6 @@ router.post('/update', function(req, res, next) {
       });
     }
   })
-  // User.findOne({$or:[{email: params.email},{mobileNumber: params.mobileNumber}]}, function(err, existingEmail) {
-  //   console.log(existingEmail);
-  //   if (existingEmail) {
-  //     return res.status(404).send('Account with that email address or mobile number already exists.');
-  //   } else {
-  //     console.log(req.body.username)
-  //     User.findOne({username: params.username}, function(err, existingUser) {
-  //       if(existingUser) {
-  //         return res.status(404).send('Account with that username already exists.');
-  //       } else {
-  //         User.update({"_id":params._id}, function(err, user) {
-  //           if (err) return next(err);
-  //           return res.status(200).send({'message':'Profile updated Successfully.'});
-  //         });
-  //       }
-  //     });
-  //   }
-  // });
 });
 
 

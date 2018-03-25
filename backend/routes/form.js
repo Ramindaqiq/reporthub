@@ -4,19 +4,14 @@ var Form = require('../models/form');
 
 router.get('/all', function(req,res,next) {
   var location = req.query.location;
-  console.log(location)
   if(location === 'all') {
     Form.find().exec(function(err,forms){
       if(err) return next(err);
-      console.log(forms)
-      // return res.send({success:true, forms:forms});
       return res.json(forms);
     })
   } else {
     Form.find({province:location}).exec(function(err,forms){
       if(err) return next(err);
-      console.log(forms)
-      // return res.send({success:true, forms:forms});
       return res.json(forms);
     })
   }
@@ -25,7 +20,6 @@ router.get('/all', function(req,res,next) {
 
 router.post('/save', function(req,res,next) {
   var params = req.body;
-  console.log(params);
 
   var form = new Form(params)
   Form.findOne({pid:params.pid}).exec(function(err,existingUser) {
@@ -52,7 +46,6 @@ router.post('/update',function(req,res,next) {
 
 router.post('/delete',function(req,res,next){
   var id = req.body._id;
-  console.log(id);
   Form.remove({"_id": id}, function(err, result) {
     if(err) return next(err);
     res.send({"message": "Form successfully deleted."})
