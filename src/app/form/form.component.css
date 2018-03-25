@@ -1,0 +1,24 @@
+.radio-label {
+    width: 45%;
+}
+
+.radio-label {
+    margin-right: 10%;
+}
+
+.radio-label span {
+    margin-left: 6px;
+}
+
+.danger {
+    color: #dc3545;
+}
+
+
+.form-btn {
+    width: 100%;
+}
+
+.padding-inputs > .col-md-6 {
+    padding: 5px 15px !important;
+}

@@ -1,0 +1,38 @@
+<body class="full-screen login">
+    <div class="wrapper">
+        <div class="page-header" style="background-image: url('../assets/img/sections/bruno-abatti.jpg'); margin:0;">
+            <div class="filter"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 col-sm-6 ml-auto mr-auto">
+                        <div class="card card-register" style="background-color: #FFF !important;">
+                            <h3 class="card-title">Welcome</h3>
+                            <form class="register-form" [formGroup]="form" (ngSubmit)="login()">
+                                <label>User Name</label>
+                                <input type="text" class="form-control no-border" placeholder="Username"  formControlName="username" >
+
+                                <label>Password</label>
+                                <input type="password" class="form-control no-border" placeholder="Password" name="password" formControlName="password" >
+
+                                <input type="submit" class="btn btn-danger btn-block btn-round" value="login" id="form-submit-btn" [disabled]=" loading || form.invalid">
+                            </form>
+                            <!-- <div class="login">
+              								<p>Don't have an account?
+              									<a [routerLink]="['/register']">Register.</a></p>
+              							</div> -->
+                            <!-- <pre> {{ form.value | json }}</pre> -->
+                            <div class="login">
+                              <p style="text-align: center; margin-top: 15px; color: #000;">Don't have an account?
+                                <a [routerLink]="['/register']" style="color: #fa5f5f;">Register.</a>
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-footer text-center">
+                    <h6>&copy; 2018 REPORTHUB, all rights reserved.</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

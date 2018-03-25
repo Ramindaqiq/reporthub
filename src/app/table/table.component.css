@@ -1,0 +1,18 @@
+.icons-wrapper> .fa {
+    font-size: 16px;
+    margin: 4px;
+}
+
+.icons-wrapper> .fa:hover {
+    color: #D00;
+    cursor: pointer;
+}
+.modal-open .modal {
+    opacity: 1 !important;
+}
+.modal-backdrop.fade {
+  opacity: 0.5!important;
+}
+.modal.fade {
+  opacity: 1!important;
+}

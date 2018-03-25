@@ -1,0 +1,150 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-warning text-center">
+                                <i class="ti-server"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Total Forms</p>
+                                {{totalForms}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-success text-center">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Last form submission date</p>
+                                {{updatedTime | date}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <div class="content" style="padding: 24px;">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <label for="inputPassword" class="col-md-6 col-sm-6 col-form-label" style="padding:9px; margin-bottom:0; color: #000;">Filter by location(province)</label>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="numbers">
+                              <select name="location" id="location" class="form-control" [(ngModel)]="filteredLocation" (change) = 'getData()'>
+                                  <option value="all">All</option>
+                                  <option *ngFor="let city of cities" value="{{ city.name }}">{{ city.name | titlecase }}</option>
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Gender Statistics</h4>
+                    <p class="category">NCD survey's data submissions by gender</p>
+                </div>
+                <div class="content">
+                    <div id="genderChart" class="ct-chart ct-perfect-fourth"></div>
+
+                    <div class="footer">
+                        <div class="chart-legend">
+                            <i class="fa fa-circle text-info"></i> Male {{males}}
+                            <!-- <i class="fa fa-circle text-danger"></i> Bounce -->
+                            <i class="fa fa-circle text-warning"></i> Female {{females}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Marital Statistics</h4>
+                    <p class="category">NCD survey's data submissions by marital status</p>
+                </div>
+                <div class="content">
+                    <div id="maritalBar" class="ct-chart ct-perfect-fourth"></div>
+
+                    <div class="footer">
+                        <div class="chart-legend">
+                          <i class="fa fa-circle" style="color:#68B3C8;"></i> Single {{singles}}
+                          <i class="fa fa-circle" style="color:#F3BB45;"></i> Married {{marrieds}}
+                          <i class="fa fa-circle" style="color:#DD0330;"></i> Seperated {{seperateds}}
+                          <i class="fa fa-circle" style="color:#7AC29A;"></i> Divorced {{divorceds}}
+                          <i class="fa fa-circle" style="color:#7A9E9F;"></i> widowed {{widoweds}}
+                          <i class="fa fa-circle" style="color:rgba(104, 179, 200, 0.8);"></i> Refused to answer {{refuseds}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="header">
+                  <h4 class="title">Provincial Statistics</h4>
+                  <p class="category">NCD survey's data submissions by Provinces</p>
+              </div>
+              <div class="content">
+                  <div id="provinceBar" class="ct-chart ct-perfect-fourth"></div>
+
+                  <div class="footer">
+                      <div class="chart-legend">
+                        <i class="fa fa-circle" style="color:#68B3C8;"></i> Kabul {{kabul}}
+                        <i class="fa fa-circle" style="color:#F3BB45;"></i> Kandahar {{kandahar}}
+                        <i class="fa fa-circle" style="color:#DD0330;"></i> Herat {{herat}}
+                        <i class="fa fa-circle" style="color:#7AC29A;"></i> Nangarhar {{nangarhar}}
+                        <i class="fa fa-circle" style="color:#7A9E9F;"></i> Helmand {{helmand}}
+                      </div>
+                      <hr>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Alcohol Consumption Statistics</h4>
+                    <p class="category">NCD survey's data submissions by alcohol consumption</p>
+                </div>
+                <div class="content">
+                    <div id="alcoholBar" class="ct-chart ct-perfect-fourth"></div>
+
+                    <div class="footer">
+                        <div class="chart-legend">
+                          <i class="fa fa-circle" style="color:#68B3C8;"></i> Consuming alcohol {{consumingAlcohol}}
+                          <i class="fa fa-circle" style="color:#F3BB45;"></i> Not consuming alcohol {{notConsumingAlcohol}}
+                          <i class="fa fa-circle" style="color:#DD0330;"></i> Refused to answer {{refusedAlcohol}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

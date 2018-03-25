@@ -1,0 +1,268 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <div class="title text-center">
+                        <h2>NCD Survey Data Entry </h2>
+                    </div>
+                </div>
+                <!-- <pre> {{ form.value | json }}</pre> -->
+                <div class="content">
+                    <form [formGroup]=form #inputIform class="register-form" (ngSubmit)="onSubmit()">
+                        <h4>Identification</h4>
+                        <hr>
+                        <div class="row padding-inputs">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Interviewer ID
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="interviewer id..." maxlength="3" id="int-id" formControlName="interviewerId">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Participant ID
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="participant id..." maxlength="3" id="par-id" formControlName="pid">
+                                </div>
+                            </div>
+
+                        </div>
+                        <h4>Basic Info</h4>
+                        <hr>
+                        <div class="row padding-inputs">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>First Name
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="first name..." id="first-name" formControlName="firstName">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" placeholder="last name..." id="last-name" formControlName="lastName">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Age
+                                        <span class="danger">*</span>
+                                        <span class="danger" [hidden]="ageError">age must be between 18-69</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="age..." id="age" formControlName="age" (input)="validateAge()">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Gender
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="gender" id="gender" class="form-control" formControlName="gender">
+                                        <option value="" disabled>Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Education Level
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="literacy" id="literacy" class="form-control" formControlName="educationLevel">
+                                        <option value="" disabled>Select Education Level</option>
+                                        <option *ngFor="let eLevel of educationLevel" value="{{ eLevel }}">{{ eLevel | titlecase }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Job
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="job" id="job" class="form-control" formControlName="job">
+                                        <option value="" disabled>Select Job</option>
+                                        <option *ngFor="let j of jobs" value="{{ j }}">{{ j | titlecase }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Marital Status
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="m-status" id="m-status" class="form-control" formControlName="maritalStatus">
+                                        <option value="" disabled>Select Status</option>
+                                        <option *ngFor="let st of mStatus" value="{{ st }}">{{ st | titlecase }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <h4>Residential Information</h4>
+                        <hr>
+                        <div class="row padding-inputs">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Country
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="country" id="country" class="form-control" formControlName="country">
+                                        <option value="" disabled>Select country</option>
+                                        <option value="afghanistan">Afghanistan</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>City
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="city" id="city" class="form-control" formControlName="province" (change)="onCityChange()">
+                                        <option value="" disabled>Select city</option>
+                                        <option *ngFor="let city of cities" value="{{ city.name }}">{{ city.name | titlecase }}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>District
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="district" id="district" class="form-control" formControlName="district">
+                                        <option value="" disabled>Select district</option>
+                                        <option *ngFor="let ds of dists" value="{{ds}}"> {{ ds | titlecase }}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4>Main Data Collection</h4>
+                        <hr>
+                        <div class="row padding-inputs">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Have you ever consumed any alcohol such as beer, wine or spirits ?
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <div>
+                                        <input type="radio" name="alcoholConsumption" value="yes" formControlName="alcoholConsumption">
+                                        <span>Yes</span>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="alcoholConsumption" value="no" formControlName="alcoholConsumption">
+                                        <span>No</span>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="alcoholConsumption" value="refused" formControlName="alcoholConsumption">
+                                        <span>Refused</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Do you currently smoke any tobbacco products such as ciggarettes, cigars or pipes ?
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <div>
+                                        <input type="radio" name="tobaccoProducts" value="yes" formControlName="tobaccoProducts">
+                                        <span>Yes</span>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="tobaccoProducts" value="no" formControlName="tobaccoProducts">
+                                        <span>No</span>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="tobaccoProducts" value="refused" formControlName="tobaccoProducts">
+                                        <span>Refused</span>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="row padding-inputs">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>On a typical week how many days do you eat fruits?
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="eatFruit" id="" class="form-control" formControlName="eatFruit">
+                                        <option value="" disabled>Select Day Count</option>
+                                        <option value="1">1 Day a Week</option>
+                                        <option value="2">2 Days a Week</option>
+                                        <option value="3">3 Days a Week</option>
+                                        <option value="4">4 Days a Week</option>
+                                        <option value="5">5 Days a Week</option>
+                                        <option value="6">6 Days a Week</option>
+                                        <option value="7">7 Days a Week</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>How often do you eat processed food high in salt ?
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="highSalt" id="" class="form-control" formControlName="highSalt">
+                                        <option value="" disabled>Select Frequncy</option>
+                                        <option value="always">Always</option>
+                                        <option value="often">Often</option>
+                                        <option value="sometimes">Sometimes</option>
+                                        <option value="rarely">Rarely</option>
+                                        <option value="never">Never</option>
+                                        <option value="dont know">Don't Know</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row padding-inputs">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>What type of oil or fat is most often used for meal preparation in your household
+                                        <span class="danger">*</span>
+                                    </label>
+                                    <select name="oil" id="oil" class="form-control" formControlName="oilType">
+                                        <option value="" disabled>Select oil type</option>
+                                        <option value="vegitable oil">Vegitable Oil</option>
+                                        <option value="lard or suet">Lard or Suet</option>
+                                        <option value="butter or ghee">Butter or Ghee</option>
+                                        <option value="margarine">Margarine</option>
+                                        <option value="none used">None Used</option>
+                                        <option value="dont know">Don't Know</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4"></div>
+                            <div class="col-md-4 col-sm-4">
+                                <input type="submit" name="submit" value="submit" class="form-btn btn btn-outline-danger" [disabled]="form.invalid || loading">
+                            </div>
+                            <div class="col-md-4 col-sm-4"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

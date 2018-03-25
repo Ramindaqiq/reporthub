@@ -1,0 +1,56 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Edit Profile</h4>
+                    </div>
+                    <div class="content">
+                        <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" class="form-control border-input" id="fullName" placeholder="Full Name" name="fullName" formControlName="fullName" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control border-input" placeholder="Username" id="username" formControlName="username">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-control border-input" placeholder="Email" id="email" formControlName="email">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mobile Number</label>
+                                        <input type="text" class="form-control border-input" placeholder="Mobile Number" id="phone" formControlName="mobileNumber" maxlength="10">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Role</label>
+                                        <input type="text" class="form-control border-input" placeholder="Last Name" disabled id="role" formControlName="role">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info btn-fill btn-wd" [disabled]="form.invalid || loading" id="form-submit-btn">Update Profile</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>

@@ -1,0 +1,36 @@
+#form-submit-btn:disabled {
+    box-shadow: none;
+    background-color: #ee6b54;
+    border-color: #ee6b54;
+}
+
+.card-register .register-form .form-control.ng-pristine:not(form) {
+    border: 1px solid #DDDDDD !important;
+}
+
+.register-form .form-control.ng-invalid.ng-touched:not(form) {
+    border-left: 3px solid #dc3545 !important;
+}
+
+.register-form .form-control.ng-invalid.ng-dirty:not(form) {
+    border-left: 3px solid #dc3545 !important;
+}
+
+.register-form .form-control.ng-valid:not(form) {
+    border-left: 3px solid #42A948 !important;
+}
+
+.phone-wrapper {
+    display: flex;
+    width: 100%;
+    border: none;
+    color: #66615b;
+    font-size: 14px;
+    line-height: 1.42857143;
+    transition: background-color 0.3s ease 0s;
+    padding-right: 0 !important;
+    height: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-bottom: 8px;
+}

@@ -1,0 +1,51 @@
+
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a class="simple-text" style="letter-spacing:2px;">
+            <div class="logo-img">
+                <img src="../../assets/img/download.png" alt="">
+            </div>
+            REPORTHUB
+        </a>
+    </div>
+    <ul class="nav">
+             <li *ngIf="isNotMobileMenu()">
+                <a style="font-weight: 600; color: #68B3C8;">
+                  {{userDetails.fullName | uppercase}}<span style="font-weight: 400; color: #fa5f5f;">({{userDetails.role | titlecase}})</span>
+                </a>
+            </li>
+            <!--<li class="dropdown" *ngIf="isNotMobileMenu()">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="ti-location-arrow"></i>
+          					<p>Locations</p>
+          					<b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Notification 1</a></li>
+                    <li><a href="#">Notification 2</a></li>
+                    <li><a href="#">Notification 3</a></li>
+                    <li><a href="#">Notification 4</a></li>
+                    <li><a href="#">Another notification</a></li>
+                  </ul>
+            </li>
+            <li *ngIf="isNotMobileMenu()">
+                <a href="#">
+					<i class="ti-settings"></i>
+					<p>Settings</p>
+                </a>
+            </li> -->
+            <li *ngIf="isNotMobileMenu()">
+                <a (click) = "logout()" style="cursor:pointer;">
+                    <i class="fa fa-sign-out"></i>
+                    <p>Log Out</p>
+                </a>
+            </li>
+            <li class="divider" *ngIf="isNotMobileMenu()"></li>
+        <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
+            <a [routerLink]="[menuItem.path]" *ngIf="checkRole(menuItem.path)">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

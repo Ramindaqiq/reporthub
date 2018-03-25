@@ -1,0 +1,41 @@
+<body class="full-screen register">
+	<div class="wrapper">
+		<div class="page-header" style="background-image: url('../assets/img/sections/soroush-karimi.jpg'); margin: 0 !important;">
+			<div class="filter"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-4 col-12 ml-auto">
+					</div>
+					<div class="col-md-4 col-sm-4 col-12 mr-auto ">
+						<div class="card card-register">
+							<h3 class="card-title text-center">Register</h3>
+							<form class="register-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+								<input type="text" class="form-control" placeholder="Full Name" id="full-name" formControlName="fullName">
+
+								<input type="email" class="form-control" placeholder="Email" id="email" formControlName="email">
+
+								<input type="text" class="form-control" placeholder="Mobile Number" id="phone" formControlName="mobileNumber" maxlength="10">
+
+								<input type="text" class="form-control" placeholder="Username" id="username" formControlName="username">
+
+								<input type="password" class="form-control" placeholder="Password" formControlName="password">
+
+								<input type="submit" class="btn btn-danger btn-block btn-round" [disabled]="form.invalid || loading" id="form-submit-btn"
+								    value="Register">
+							</form>
+
+							<div class="login">
+								<p>Already have an account?
+									<a [routerLink]="['/login']">Log in</a>.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="demo-footer text-center">
+				<h6>&copy; 2018 REPORTHUB, all rights reserved.</h6>
+			</div>
+		</div>
+	</div>
+
+</body>
