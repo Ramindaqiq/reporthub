@@ -1,4 +1,4 @@
-# ReportHub ![Logo](https://github.com/Ramindaqiq/reporthub/tree/master/markdown/download.png "Reporthub")
+# ReportHub ![Logo](/markdown/download.png "Reporthub")
 
 ReportHub is a minimal and generic web application for survey data. Users can fill data in existing forms, can edit and can preview data. Based on the data entered into the database, the result is displayed in visual form such as charts and map and also tabular form. Based on the requirement, the users can also generate report and export the data in Comma Separated Values (CSV) files. The users can visualize the data in real-time once it is stored in the system. ReportHub supports simple dashboard that help to display information. ReportHub is open source, anyone can customize and build their own dashboard. Deployment requires Linux systems administration experience, but once configured and deployed it can be used by anyone.
 
